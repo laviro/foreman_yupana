@@ -23,8 +23,8 @@ class MetadataGeneratorTest < ActiveSupport::TestCase
   end
 
   test 'generates an empty report with hidden hostname and ip' do
-    Setting[:obfuscate_inventory_hostnames] = true
-    Setting[:obfuscate_inventory_ips] = true
+    CommonParameter.find_or_create_by!(name: 'obfuscate_inventory_ips', value: true)
+    CommonParameter.find_or_create_by!(name: 'obfuscate_inventory_hostnames', value: true)
     @host = FactoryBot.create(:host, :managed)
     ForemanRhCloud.expects(:foreman_host_name).returns(@host.name)
     generator = ForemanInventoryUpload::Generators::Metadata.new

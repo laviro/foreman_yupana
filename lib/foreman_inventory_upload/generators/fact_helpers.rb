@@ -61,7 +61,7 @@ module ForemanInventoryUpload
         insights_client_setting = ActiveModel::Type::Boolean.new.cast(insights_client_setting)
         return insights_client_setting unless insights_client_setting.nil?
 
-        Setting[:obfuscate_inventory_hostnames]
+        CommonParameter.find_by(name: 'obfuscate_inventory_hostnames')&.value
       end
 
       def fqdn(host)
@@ -79,7 +79,7 @@ module ForemanInventoryUpload
         insights_client_setting = ActiveModel::Type::Boolean.new.cast(insights_client_setting)
         return insights_client_setting unless insights_client_setting.nil?
 
-        Setting[:obfuscate_inventory_ips]
+        CommonParameter.find_by(name: 'obfuscate_inventory_ips')&.value
       end
 
       def host_ips(host)
@@ -114,7 +114,7 @@ module ForemanInventoryUpload
         foreman_hostname = ForemanRhCloud.foreman_host&.name
         if bash_hostname == foreman_hostname
           fqdn(ForemanRhCloud.foreman_host)
-        elsif Setting[:obfuscate_inventory_hostnames]
+        elsif CommonParameter.find_by(name: 'obfuscate_inventory_hostnames')&.value
           obfuscate_fqdn(bash_hostname)
         else
           bash_hostname

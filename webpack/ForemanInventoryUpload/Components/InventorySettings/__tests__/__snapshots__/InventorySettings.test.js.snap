@@ -12,14 +12,6 @@ exports[`InventorySettings rendering render without Props 1`] = `
     setting="autoUploadEnabled"
   />
   <AdvancedSetting
-    key="hostObfuscationEnabled"
-    setting="hostObfuscationEnabled"
-  />
-  <AdvancedSetting
-    key="ipsObfuscationEnabled"
-    setting="ipsObfuscationEnabled"
-  />
-  <AdvancedSetting
     key="excludePackagesEnabled"
     setting="excludePackagesEnabled"
   />

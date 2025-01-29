@@ -190,7 +190,7 @@ class SliceGeneratorTest < ActiveSupport::TestCase
   end
 
   test 'generates obfuscated ip_address fields without inisghts-client' do
-    Setting[:obfuscate_inventory_ips] = true
+    CommonParameter.find_or_create_by!(name: 'obfuscate_inventory_ips', value: true)
 
     @host.interfaces << FactoryBot.build(:nic_managed)
     batch = Host.where(id: @host.id).in_batches.first
@@ -261,7 +261,7 @@ class SliceGeneratorTest < ActiveSupport::TestCase
   end
 
   test 'obfuscates fqdn when setting set' do
-    Setting[:obfuscate_inventory_hostnames] = true
+    CommonParameter.find_or_create_by!(name: 'obfuscate_inventory_hostnames', value: true)
 
     batch = Host.where(id: @host.id).in_batches.first
     generator = create_generator(batch)

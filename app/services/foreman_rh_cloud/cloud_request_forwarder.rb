@@ -17,7 +17,7 @@ module ForemanRhCloud
       logger.debug("Sending request to: #{request_opts[:url]}")
 
       execute_cloud_request(request_opts)
-    rescue RestClient::Exception => error_response
+    rescue RestClient::ExceptionWithResponse => error_response
       error_response.response
     end
 
